@@ -66,6 +66,18 @@ LRESULT main_window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		break;
+	case WM_KEYUP:
+		if (wParam == 'F')
+		{
+			SetWindowText(hwnd, L"bunny_window");
+		}
+		break;
+	case WM_KEYDOWN:
+		if (wParam == 'F')
+		{
+			SetWindowText(hwnd, L"bunny_f_window");
+		}
+		break;
 	default:
 		break;
 	}
