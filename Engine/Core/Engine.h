@@ -2,14 +2,18 @@
 #include <memory>
 
 class OS;
-class Window;
+class Graphics;
 
 class Engine
 {
 public:
-	Engine(int width, int height);
-	const static Engine& GetInstance();
-	std::unique_ptr<Window> window;
+	Engine();
+	static Engine& GetInstance();
+
+	void Init(int width, int height, std::unique_ptr<OS>&& system);
+	int Loop();
+
+	std::unique_ptr<Graphics> graphics;
 	std::unique_ptr<OS> os;
 
 private:

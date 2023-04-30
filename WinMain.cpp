@@ -1,9 +1,7 @@
 #include <Windows.h>
 
-const auto cWindowWidth = 1920;
-const auto cWindowHeight = 1080;
-
-LRESULT CALLBACK main_window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+#include "Engine/Core/Engine.h"
+#include "Engine/Platform/Windows/OSWindows.h"
 
 int CALLBACK WinMain(
 	HINSTANCE hInstance,
@@ -12,21 +10,8 @@ int CALLBACK WinMain(
 	int nCmdShow
 )
 {
-	MSG msg;
-	BOOL gResult;
-	while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0)
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
+	Engine::GetInstance().Init(1280, 720, std::make_unique<OSWindows>());
+	Engine::GetInstance().Loop();
 
-	if (gResult == -1)
-	{
-		return -1;
-	}
-	else
-	{
-		return msg.wParam;
-	}
 	return 0;
 }

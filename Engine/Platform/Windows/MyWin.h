@@ -5,6 +5,8 @@
 #include <sdkddkver.h>
 
 #ifndef FULL_WINTARD
+//#define NONLS // what
+
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
 #define NOSYSMETRICS
@@ -19,7 +21,6 @@
 #define NOCTLMGR
 #define NODRAWTEXT
 #define NOKERNEL
-#define NONLS
 #define NOMEMMGR
 #define NOMETAFILE
 #define NOOPENFILE
