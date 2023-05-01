@@ -81,6 +81,8 @@ void OsWindows::ProcessMessage() {
 				EventServer<OsKeyBoardEvent>::GetInstance().Notify(
 						{ OsKeyBoardEvent::Type::Keyup, param });
 			} break;
+			default:
+				break;
 		}
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
