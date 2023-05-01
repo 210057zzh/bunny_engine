@@ -1,18 +1,22 @@
 #pragma once
 #include <unordered_map>
-class OS
-{
+
+class OS {
 public:
-	struct OSKeyBoardEvent
-	{
-		enum class Type
-		{
-			KEYUP,
-			KEYDOWN,
-			INVALID
+	struct OsKeyBoardEvent {
+		enum class Type {
+			Keyup,
+			Keydown,
+			Invalid
 		};
-		Type type = Type::INVALID;
+
+		Type type = Type::Invalid;
 		uint32_t code = -1;
+	};
+
+	struct OsMouseEvent {
+		enum class Type {
+		};
 	};
 
 	OS() = default;
@@ -22,9 +26,8 @@ public:
 	virtual int Loop() = 0;
 	virtual void ProcessMessage() = 0;
 
-	OS(const OS& os) = delete;
-	OS(OS&& os) = delete;
-	OS& operator=(const OS& os) = delete;
-	OS& operator=(OS&& os) = delete;
+	OS(const OS &os) = delete;
+	OS(OS &&os) = delete;
+	OS &operator=(const OS &os) = delete;
+	OS &operator=(OS &&os) = delete;
 };
-

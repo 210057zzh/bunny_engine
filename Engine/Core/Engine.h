@@ -5,26 +5,24 @@ class KeyboardManager;
 class OS;
 class Graphics;
 
-class Engine
-{
+class Engine {
 public:
 	Engine();
-	static Engine& GetInstance();
+	static Engine &GetInstance();
 
-	void Init(int width, int height, std::unique_ptr<OS>&& system);
+	void Init(int width, int height, std::unique_ptr<OS> &&system);
 	int Loop();
 	int Frame();
-	void Terminate()
-	{
-		m_running_ = false;
+
+	void Terminate() {
+		m_running = false;
 	}
 
 	std::unique_ptr<Graphics> graphics;
 	std::unique_ptr<OS> os;
 
 private:
-	std::unique_ptr<KeyboardManager> keyboard_manager_;
-	static Engine s_instance_;
-	bool m_running_ = true;
+	std::unique_ptr<KeyboardManager> m_keyboardManager;
+	static Engine m_instance;
+	bool m_running = true;
 };
-

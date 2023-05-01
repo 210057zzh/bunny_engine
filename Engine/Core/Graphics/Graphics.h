@@ -1,12 +1,11 @@
 ﻿#pragma once
 
-class Graphics
-{
+class Graphics {
 public:
 	Graphics(int width, int height);
 	void SetResolution(int width, int height);
 
 private:
-	int m_width_;
-	int m_height_;
+	int m_width;
+	int m_height;
 };
