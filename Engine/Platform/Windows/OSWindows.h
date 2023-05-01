@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "MyWin.h"
 #include "Engine/Platform/OS.h"
+#include "Engine/Util/EventServer.h"
 #include "Engine/Util/Exception.h"
 
 
@@ -17,6 +18,8 @@ public:
 	void SetResolution(int width, int height) override;
 	void InitializeWindow() override;
 	int Loop() override;
+	void ProcessMessage() override;
+
 
 	class OSException : public Exception
 	{
@@ -31,6 +34,8 @@ public:
 		HRESULT m_hr_;
 	};
 
+
+
 private:
 	static LRESULT CALLBACK HandleMessage(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	HWND m_hwnd_{ nullptr };
@@ -38,3 +43,4 @@ private:
 };
 
 #define WINDOWS_EXCEPTION(hr) OSWindows::OSException(__LINE__, __FILE__, hr)
+#define GET_LAST_ERROR() OSWindows::OSException(__LINE__, __FILE__, GetLastError())

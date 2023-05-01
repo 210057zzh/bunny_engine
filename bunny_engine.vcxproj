@@ -155,6 +155,7 @@
     <ClCompile Include="Engine\Core\Graphics\Graphics.cpp" />
     <ClCompile Include="Engine\Platform\Windows\OSWindows.cpp" />
     <ClCompile Include="Engine\Util\Exception.cpp" />
+    <ClCompile Include="Engine\Core\IO\KeyboardManager.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +164,10 @@
     <ClInclude Include="Engine\Platform\Windows\MyWin.h" />
     <ClInclude Include="Engine\Platform\OS.h" />
     <ClInclude Include="Engine\Platform\Windows\OSWindows.h" />
+    <ClInclude Include="Engine\Util\EventServer.h" />
+    <ClInclude Include="Engine\Util\EventSubscriber.h" />
     <ClInclude Include="Engine\Util\Exception.h" />
+    <ClInclude Include="Engine\Core\IO\KeyboardManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

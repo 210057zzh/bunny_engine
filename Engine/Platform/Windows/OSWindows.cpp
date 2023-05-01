@@ -1,5 +1,6 @@
 ﻿#include "OSWindows.h"
 #include <comdef.h>
+#include <iostream>
 #include <sstream>
 
 OSWindows::OSWindows() : OS(), m_hinstance_(GetModuleHandle(nullptr))
@@ -83,6 +84,33 @@ int OSWindows::Loop()
 	}
 }
 
+void OSWindows::ProcessMessage()
+{
+	MSG msg;
+	bool running = true;
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		std::cout << "here";
+		switch (msg.message)
+		{
+		case WM_KEYDOWN:
+		{
+			uint32_t param = (uint32_t)msg.wParam;
+			EventServer<OSKeyBoardEvent>::GetInstance().Notify({ OSKeyBoardEvent::Type::KEYDOWN, param });
+		}
+		break;
+		case WM_KEYUP:
+		{
+			uint32_t param = (uint32_t)msg.wParam;
+			EventServer<OSKeyBoardEvent>::GetInstance().Notify({ OSKeyBoardEvent::Type::KEYUP, param });
+		}
+		break;
+		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+}
+
 OSWindows::OSException::OSException(int line, const char* file, HRESULT hr) noexcept
 	:Exception(line, file), m_hr_(hr)
 {
@@ -128,18 +156,7 @@ LRESULT OSWindows::HandleMessage(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	{
 	case WM_CLOSE:
 		PostQuitMessage(0);
-		break;
-	case WM_KEYUP:
-		if (wParam == 'F')
-		{
-			SetWindowText(hwnd, "bunny_window");
-		}
-		break;
-	case WM_KEYDOWN:
-		if (wParam == 'F')
-		{
-			SetWindowText(hwnd, "bunny_f_window");
-		}
+		EventServer<OSKeyBoardEvent>::GetInstance().Notify({ OSKeyBoardEvent::Type::KEYDOWN, VK_ESCAPE });
 		break;
 	default:
 		break;

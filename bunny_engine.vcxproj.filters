@@ -44,6 +44,9 @@
     <ClCompile Include="Engine\Util\Exception.cpp">
       <Filter>Source Files\Engine\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Core\IO\KeyboardManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Platform\Windows\MyWin.h">
@@ -64,5 +67,8 @@
     <ClInclude Include="Engine\Util\Exception.h">
       <Filter>Source Files\Engine\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Util\EventServer.h" />
+    <ClInclude Include="Engine\Util\EventSubscriber.h" />
+    <ClInclude Include="Engine\Core\IO\KeyboardManager.h" />
   </ItemGroup>
 </Project>
